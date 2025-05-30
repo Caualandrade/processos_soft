@@ -1,0 +1,65 @@
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajustado para 250px */
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* Cores específicas para os cartões de visão geral */
+.total-stock .icon-large {
+    color: var(--primary-color);
+}
+.total-stock p {
+    color: var(--primary-dark);
+}
+
+.low-stock .icon-large {
+    color: var(--warning-color);
+}
+.low-stock p {
+    color: var(--warning-color);
+}
+
+.expiring-soon .icon-large {
+    color: var(--danger-color);
+}
+.expiring-soon p {
+    color: var(--danger-color);
+}
+
+
+.search-filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-filter-bar input,
+.search-filter-bar select {
+    flex: 1; /* Permite que os elementos se estendam */
+    min-width: 160px; /* Garante um tamanho mínimo para cada um */
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Bordas mais arredondadas */
+    font-size: 1rem;
+}
+
+.report-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.report-options p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.report-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Permite que os botões quebrem linha em mobile */
+}

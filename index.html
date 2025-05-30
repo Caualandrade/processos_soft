@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Estoque de Remédios - OldTech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"> <div class="logo">
+                    <h1>OldTech</h1>
+                </div>
+                <button class="menu-toggle" aria-label="Abrir/Fechar Menu de Navegação">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="nav-item active" data-section="overview"><i class="fas fa-chart-line"></i> Visão Geral</a></li>
+                    <li><a href="#" class="nav-item" data-section="medication-list"><i class="fas fa-pills"></i> Lista de Medicamentos</a></li>
+                    <li><a href="#" class="nav-item" data-section="add-medication"><i class="fas fa-plus-circle"></i> Adicionar Remédio</a></li>
+                    <li><a href="#" class="nav-item" data-section="patient-medication"><i class="fas fa-hospital-user"></i> Pacientes e Medicamentos</a></li>
+                    <li><a href="#" class="nav-item" data-section="reports"><i class="fas fa-file-alt"></i> Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <h2>Bem-vindo(a) ao Painel de Estoque!</h2>
+                <div class="user-info">
+                    <span class="username">Administrador(a)</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <section id="overview" class="dashboard-section active">
+                <h3>Visão Geral do Estoque</h3>
+                <div class="overview-cards">
+                    <div class="card total-stock">
+                        <i class="fas fa-boxes icon-large"></i>
+                        <h4>Total de Remédios em Estoque</h4>
+                        <p id="total-medicines">1500</p>
+                    </div>
+                    <div class="card low-stock">
+                        <i class="fas fa-exclamation-triangle icon-large"></i>
+                        <h4>Remédios Acabando</h4>
+                        <p id="low-stock-count">15</p>
+                        <small>Menos de 5 unidades</small>
+                    </div>
+                    <div class="card expiring-soon">
+                        <i class="fas fa-calendar-times icon-large"></i>
+                        <h4>Vencendo Próximo</h4>
+                        <p id="expiring-count">8</p>
+                        <small>Próximos 30 dias</small>
+                    </div>
+                </div>
+            </section>
+
+            <section id="medication-list" class="dashboard-section hidden">
+                <h3>Lista de Medicamentos</h3>
+                <div class="search-filter-bar">
+                    <input type="text" id="search-medication" placeholder="Buscar por nome, dosagem, etc.">
+                    <select id="filter-validity">
+                        <option value="">Filtrar por Validade</option>
+                        <option value="expiring-soon">Vencendo em breve</option>
+                        <option value="valid">Válidos</option>
+                        <option value="expired">Vencidos</option>
+                    </select>
+                    <select id="filter-quantity">
+                        <option value="">Filtrar por Quantidade</option>
+                        <option value="low">Baixa ( &lt; 5)</option>
+                        <option value="medium">Média (5-50)</option>
+                        <option value="high">Alta ( &gt; 50)</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome do Remédio</th>
+                                <th>Dosagem</th>
+                                <th>Quantidade</th>
+                                <th>Validade</th>
+                                <th>Localização</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medication-table-body">
+                            <tr>
+                                <td>Paracetamol</td>
+                                <td>500mg</td>
+                                <td>120</td>
+                                <td>30/12/2026</td>
+                                <td>Prateleira A1</td>
+                                <td>
+                                    <button class="btn-action btn-edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action btn-remove" title="Remover"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dipirona</td>
+                                <td>300mg/ml</td>
+                                <td>3</td>
+                                <td class="text-danger">15/06/2025</td>
+                                <td>Armário C3</td>
+                                <td>
+                                    <button class="btn-action btn-edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action btn-remove" title="Remover"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amoxicilina</td>
+                                <td>250mg</td>
+                                <td>8</td>
+                                <td class="text-warning">20/07/2025</td>
+                                <td>Prateleira A2</td>
+                                <td>
+                                    <button class="btn-action btn-edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action btn-remove" title="Remover"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="add-medication" class="dashboard-section hidden">
+                <h3>Adicionar Novo Remédio</h3>
+                <form id="add-medication-form" class="form-card">
+                    <div class="form-group">
+                        <label for="med-name">Nome do Remédio:</label>
+                        <input type="text" id="med-name" name="name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-dosage">Dosagem:</label>
+                        <input type="text" id="med-dosage" name="dosage" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-quantity">Quantidade:</label>
+                        <input type="number" id="med-quantity" name="quantity" min="1" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-validity">Data de Validade:</label>
+                        <input type="date" id="med-validity" name="validity" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-manufacturer">Fabricante:</label>
+                        <input type="text" id="med-manufacturer" name="manufacturer">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-location">Localização no Estoque:</label>
+                        <input type="text" id="med-location" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-notes">Observações:</label>
+                        <textarea id="med-notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Adicionar Remédio</button>
+                </form>
+            </section>
+
+            <section id="patient-medication" class="dashboard-section hidden">
+                <h3>Gerenciar Pacientes e Medicamentos</h3>
+
+                <div class="form-card">
+                    <h4>Vincular Medicamento a Paciente</h4>
+                    <div class="form-group">
+                        <label for="patient-select">Selecionar Paciente:</label>
+                        <select id="patient-select">
+                            <option value="">Selecione um paciente</option>
+                            <option value="paciente1">Dona Maria</option>
+                            <option value="paciente2">Sr. João</option>
+                            <option value="paciente3">Dona Josefa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="medication-select">Selecionar Medicamento:</label>
+                        <select id="medication-select">
+                            <option value="">Selecione um medicamento</option>
+                            <option value="paracetamol">Paracetamol (500mg)</option>
+                            <option value="dipirona">Dipirona (300mg/ml)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dose-quantity">Quantidade/Dose:</label>
+                        <input type="number" id="dose-quantity" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="medication-schedule">Horário da Administração:</label>
+                        <input type="time" id="medication-schedule">
+                    </div>
+                    <div class="form-group">
+                        <label for="administration-notes">Observações da Administração:</label>
+                        <textarea id="administration-notes" rows="2"></textarea>
+                    </div>
+                    <button class="btn btn-primary" id="add-patient-medication"><i class="fas fa-link"></i> Vincular</button>
+                </div>
+
+                <div class="table-container mt-3">
+                    <h4>Medicamentos por Paciente</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Medicamento</th>
+                                <th>Dose</th>
+                                <th>Horário</th>
+                                <th>Administrado Por</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patient-medication-table-body">
+                            <tr>
+                                <td>Dona Maria</td>
+                                <td>Paracetamol</td>
+                                <td>1 comprimido</td>
+                                <td>08:00</td>
+                                <td>Enf. Ana</td>
+                                <td class="text-success">Administrado</td>
+                                <td>
+                                    <button class="btn-action btn-confirm-admin" title="Confirmar Administração"><i class="fas fa-check-circle"></i></button>
+                                    <button class="btn-action btn-edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action btn-remove" title="Remover"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sr. João</td>
+                                <td>Dipirona</td>
+                                <td>20 gotas</td>
+                                <td>14:30</td>
+                                <td>-</td>
+                                <td class="text-warning">Pendente</td>
+                                <td>
+                                    <button class="btn-action btn-confirm-admin" title="Confirmar Administração"><i class="fas fa-check-circle"></i></button>
+                                    <button class="btn-action btn-edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action btn-remove" title="Remover"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="reports" class="dashboard-section hidden">
+                <h3>Relatórios</h3>
+                <div class="report-options form-card">
+                    <p>Selecione o tipo de relatório para exportar:</p>
+                    <div class="form-group">
+                        <label for="report-type">Tipo de Relatório:</label>
+                        <select id="report-type">
+                            <option value="missing-meds">Remédios em Falta</option>
+                            <option value="expiring-meds">Remédios Vencendo</option>
+                            <option value="administered-meds">Medicamentos Administrados</option>
+                        </select>
+                    </div>
+                    <div class="report-buttons">
+                        <button class="btn btn-secondary" id="export-pdf"><i class="fas fa-file-pdf"></i> Exportar PDF</button>
+                        <button class="btn btn-secondary" id="export-excel"><i class="fas fa-file-excel"></i> Exportar Excel</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/patient_medication.js"></script>
+</body>
+</html>

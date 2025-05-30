@@ -1,0 +1,623 @@
+/* Variáveis de Cores - ATUALIZADAS */
+:root {
+    --primary-color: #3498db; /* Azul vibrante */
+    --primary-dark: #2980b9;
+    --secondary-color: #2ecc71; /* Verde esmeralda */
+    --secondary-dark: #27ae60;
+    --background-color: #ecf0f1; /* Cinza claro */
+    --card-background: #ffffff;
+    --text-color: #2c3e50; /* Azul escuro quase preto */
+    --light-text-color: #7f8c8d; /* Cinza médio */
+    --border-color: #bdc3c7; /* Cinza claro para bordas */
+    --danger-color: #e74c3c; /* Vermelho forte para alertas */
+    --warning-color: #f39c12; /* Laranja para atenção */
+    --success-color: #2ecc71; /* Verde para sucesso */
+    --info-color: #3498db; /* Azul para informação */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Layout Geral */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barra Lateral */
+.sidebar {
+    width: 250px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15); /* Sombra mais suave */
+    transition: width 0.3s ease, transform 0.3s ease; /* Transição para responsividade */
+}
+
+.sidebar-header { /* Novo container para logo e toggle */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar .logo {
+    text-align: center;
+    flex-grow: 1; /* Garante que o logo ocupe o espaço disponível */
+}
+
+.sidebar .logo h1 {
+    font-size: 2rem; /* Tamanho maior para o logo */
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.main-nav ul li {
+    margin-bottom: 8px; /* Espaçamento ajustado */
+}
+
+.main-nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+}
+
+.main-nav ul li a:hover {
+    background-color: var(--primary-dark);
+    transform: translateX(5px); /* Efeito sutil ao passar o mouse */
+}
+.main-nav ul li a.active {
+    background-color: var(--primary-dark);
+    box-shadow: inset 3px 0 0 white; /* Indicador de item ativo */
+}
+
+
+.main-nav ul li a i {
+    margin-right: 12px; /* Espaçamento do ícone */
+    font-size: 1.4rem;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: var(--background-color);
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: var(--card-background);
+    padding: 20px 30px;
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra mais proeminente */
+}
+
+.topbar h2 {
+    font-size: 2rem;
+    color: var(--text-color); /* Cor de texto mais escura */
+    font-weight: 600;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+}
+
+.user-info .username {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.user-info i {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+/* Seções do Dashboard */
+.dashboard-section {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.dashboard-section h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.dashboard-section.hidden {
+    display: none;
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 25px; /* Padding maior */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Efeito de elevação */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.card p {
+    font-size: 3rem; /* Tamanho maior para os números */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card small {
+    color: var(--light-text-color);
+    font-size: 0.9rem;
+}
+
+.icon-large {
+    font-size: 3.5rem; /* Ícones maiores */
+    margin-bottom: 18px;
+    color: var(--primary-color);
+}
+
+/* Botões */
+.btn {
+    padding: 14px 30px; /* Padding maior para facilitar o toque */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    white-space: nowrap; /* Evita que o texto do botão quebre */
+}
+
+.btn i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-action {
+    background: none;
+    border: 1px solid var(--border-color); /* Adicionado borda sutil */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 0 4px; /* Espaçamento ajustado */
+    padding: 8px 10px; /* Padding para área de clique */
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.btn-edit {
+    color: var(--info-color);
+}
+
+.btn-edit:hover {
+    color: #2980b9; /* Tom mais escuro do info-color */
+    border-color: #2980b9;
+}
+
+.btn-remove {
+    color: var(--danger-color);
+}
+
+.btn-remove:hover {
+    color: #c0392b; /* Tom mais escuro do danger-color */
+    border-color: #c0392b;
+}
+
+.btn-confirm-admin {
+    color: var(--success-color);
+}
+.btn-confirm-admin:hover {
+    color: var(--secondary-dark);
+    border-color: var(--secondary-dark);
+}
+.btn-confirm-admin:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+}
+
+
+/* Tabelas */
+.table-container {
+    overflow-x: auto; /* Habilita scroll horizontal se a tabela for muito larga */
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate; /* Permite border-radius */
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden; /* Garante que bordas arredondadas funcionem com conteúdo */
+}
+
+.data-table th, .data-table td {
+    padding: 15px 18px; /* Padding maior */
+    text-align: left;
+    font-size: 1rem;
+    vertical-align: middle; /* Alinhamento vertical do texto */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    position: sticky; /* Fixa o cabeçalho em scroll horizontal */
+    top: 0;
+}
+/* Estilo para as bordas de canto da tabela */
+.data-table thead th:first-child { border-top-left-radius: 12px; }
+.data-table thead th:last-child { border-top-right-radius: 12px; }
+
+.data-table tbody tr:last-child td {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+
+.data-table tr:nth-child(even) {
+    background-color: #fcfcfc; /* Fundo mais claro para linhas pares */
+}
+
+.data-table tr:hover {
+    background-color: #e8f6fc; /* Cor mais suave no hover */
+}
+
+/* Cores de status/alerta em texto */
+.text-danger {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.text-warning {
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+.text-success {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+/* Formulários */
+.form-card {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px; /* Padding ajustado */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Bordas mais arredondadas */
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: #fefefe;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25); /* Sombra suave no foco */
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Margins e Paddings Úteis */
+.mt-3 {
+    margin-top: 30px;
+}
+
+/* --- Responsividade Aprimorada --- */
+/* Mobile First Approach: Estilos padrão para telas pequenas, depois sobrescreve para maiores */
+
+/* Dispositivos menores que 992px (tablets em modo paisagem e mobile) */
+@media (max-width: 991px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto; /* Altura automática para mobile */
+        padding: 15px 20px;
+        flex-direction: column; /* Agora a sidebar terá logo/toggle em cima e nav abaixo */
+        position: fixed; /* Fixa a barra superior para navegação */
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Garante que fique acima de outros elementos */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transform: translateY(0); /* Garante que esteja visível inicialmente */
+        transition: transform 0.3s ease-in-out; /* Adiciona transição para esconder/mostrar */
+    }
+
+    .sidebar-header { /* Novo container para logo e toggle */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%; /* Ocupa toda a largura */
+        margin-bottom: 0; /* Remove margem para não atrapalhar o menu */
+        padding-bottom: 0;
+        border-bottom: none; /* Remove a borda inferior */
+    }
+    .sidebar .logo {
+        text-align: left; /* Alinha o logo à esquerda */
+        flex-grow: 1;
+    }
+    .sidebar .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .main-nav {
+        display: none; /* Esconde a navegação principal por padrão */
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px; /* Espaço entre o header e o menu */
+    }
+    .main-nav ul {
+        width: 100%;
+        padding: 10px 0;
+    }
+    .main-nav ul li a {
+        justify-content: flex-start; /* Alinha os itens à esquerda */
+        padding: 12px 20px; /* Mais padding para o clique */
+    }
+
+    /* Estilo para o botão de toggle do menu (hamburguer) */
+    .menu-toggle {
+        display: block; /* Mostra o botão de toggle */
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.3s ease; /* Transição para rotação */
+    }
+    .menu-toggle .fa-bars {
+        transform: rotate(0deg);
+    }
+    .menu-toggle .fa-times { /* Ícone 'X' para fechar */
+        transform: rotate(90deg);
+    }
+
+    /* Quando a sidebar está 'open' (ativa via JS) */
+    .sidebar.open {
+        transform: translateY(0); /* Garante que esteja visível */
+        height: auto; /* Ajusta a altura ao conteúdo */
+        max-height: 100vh; /* Garante que não exceda a altura da viewport */
+        overflow-y: auto; /* Adiciona scroll se o menu for muito grande */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Sombra mais forte quando aberto */
+    }
+    .sidebar.open .main-nav {
+        display: flex; /* Mostra o menu de navegação */
+    }
+
+    .main-content {
+        padding: 20px;
+        margin-top: 70px; /* Espaço para a sidebar fixa no topo (considerando a altura do header da sidebar) */
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+        margin-bottom: 20px; /* Ajuste o espaçamento */
+    }
+
+    .topbar h2 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        text-align: center; /* Centraliza o título */
+        width: 100%;
+    }
+
+    .user-info {
+        width: 100%;
+        justify-content: center; /* Centraliza a informação do usuário */
+        margin-top: 10px;
+    }
+
+    .overview-cards {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 20px;
+    }
+
+    .card {
+        margin-bottom: 0; /* Remove margem inferior extra, já que o gap do grid cuida disso */
+    }
+
+    .data-table th, .data-table td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+
+/* Dispositivos muito pequenos (smartphones) */
+@media (max-width: 575px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .dashboard-section {
+        padding: 15px;
+    }
+
+    .dashboard-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        font-size: 2.5rem;
+    }
+
+    .icon-large {
+        font-size: 3rem;
+    }
+
+    .search-filter-bar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch; /* Garante que os itens se estiquem */
+    }
+
+    .search-filter-bar input,
+    .search-filter-bar select {
+        width: 100%; /* Ocupa a largura total */
+        min-width: unset; /* Remove o min-width para telas muito pequenas */
+    }
+
+    .btn {
+        width: 100%; /* Botões ocupam largura total */
+        margin-bottom: 10px;
+    }
+
+    .report-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .data-table th, .data-table td {
+        white-space: nowrap; /* Evita que o texto da tabela quebre */
+    }
+}
+
+/* Estilos para o overlay de fundo quando o menu está aberto (opcional, mas bom para usabilidade) */
+.overlay {
+    display: none; /* Inicia oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 999; /* Abaixo da sidebar, mas acima do conteúdo */
+}
+.sidebar.open + .overlay { /* Mostra o overlay quando a sidebar está aberta */
+    display: block;
+}
